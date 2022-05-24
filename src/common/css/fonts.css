@@ -1,0 +1,49 @@
+@font-face {
+    font-family: 'CynGamer';
+    src: url('../../assets/fonts/CYNGamer.ttf') format('truetype');
+    font-style: normal;
+    font-weight: normal;
+  }
+
+/* Background colors */
+.bg-1 {
+  background: #DE9151 !important;
+}
+.bg-2 {
+  background: #F34213 !important;
+}
+.bg-3 {
+  background: #2E2E3A !important;
+}
+.bg-4 {
+  background: #BC5D2E !important;
+}
+.bg-5 {
+  background: #BBB8B2 !important;
+}
+
+/* Text colors */
+.fc-1 {
+  color: #DE9151 !important;
+}
+.fc-2 {
+  color: #F34213 !important;
+}
+.fc-3 {
+  color: #2E2E3A !important;
+}
+.fc-4 {
+  color: #BC5D2E !important;
+}
+.fc-5 {
+  color: #BBB8B2 !important;
+}
+
+/* Font size */
+.fs-7 {
+  font-size: 0.8rem !important;
+}
+
+.text-menu {
+  font-weight: bold;
+}
