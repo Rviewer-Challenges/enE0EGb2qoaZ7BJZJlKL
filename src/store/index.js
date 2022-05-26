@@ -10,6 +10,7 @@ export default new Vuex.Store({
     game: {
       api: '',
       level: '',
+      stateFinished: false,
       listImg: []
     }
   },
@@ -19,6 +20,17 @@ export default new Vuex.Store({
     },
     changeStateCard(state, val) {
       state.game.listImg[val.pos].selected = val.state
+    },
+    winGame(state, val) {
+      state.game.stateFinished = val
+    },
+    resetGame(state) {
+      state.game = {
+        api: '',
+        level: '',
+        stateFinished: false,
+        listImg: []
+      }
     }
   },
   actions: {
@@ -29,6 +41,12 @@ export default new Vuex.Store({
     },
     cambiarEstadoTarjeta({commit}, obj) {
       commit('changeStateCard', obj)
+    },
+    ganarJuego({commit}, val) {
+      commit('winGame', val)
+    },
+    reiniciarData({commit}) {
+      commit('resetGame')
     }
   },
   getters: {
@@ -38,6 +56,9 @@ export default new Vuex.Store({
     getCardByPosition: (state) => (pos) => {
       return state.game.listImg[pos]
     },
+    getStateGame(state) {
+      return state.game.stateFinished
+    }
   },
   modules: {
   }

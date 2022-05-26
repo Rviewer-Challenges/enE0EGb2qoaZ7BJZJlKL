@@ -12,7 +12,7 @@
                     <img src="@/assets/img/PokeApi.jpg" alt="" class="img-fluid">
                   </div>
                   <div class="tema-text my-2">
-                    <span class="fs-6">Pokemon</span>
+                    <span class="fs-6">Pokémon</span>
                   </div>
                 </div>
               </div>
@@ -43,9 +43,9 @@
           <div class="col">
             <span class="fs-1">Nivel</span>
             <div class="my-3">
-              <a href="#" class="btn-1 bg-2" @click="selectPokeApi(1)"><span>Facil</span></a>
+              <a href="#" class="btn-1 bg-2" @click="selectPokeApi(1)"><span>Fácil</span></a>
               <a href="#" class="btn-1 bg-2" @click="selectPokeApi(2)"><span>Medio</span></a>
-              <a href="#" class="btn-1 bg-2" @click="selectPokeApi(3)"><span>Dificil</span></a>
+              <a href="#" class="btn-1 bg-2" @click="selectPokeApi(3)"><span>Difícil</span></a>
             </div>
               <router-link :to=" {name: 'RoomGame'}" type="button" class="btn-1 bg-3" ><span class="fs-2">Iniciar partida</span></router-link>
           </div>

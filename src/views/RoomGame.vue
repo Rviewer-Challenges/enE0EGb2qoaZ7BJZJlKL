@@ -44,7 +44,6 @@
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
 import { mapGetters, mapActions} from "vuex"
-import * as LibJs from '@/common/js/functions.js'
 
 export default {
   name: 'RoomGame',
@@ -60,27 +59,34 @@ export default {
       },
       movement: 0,
       pairsRemaining: 8,
-      time: 0
+      time: 0,
     }
   },
   methods: {
     ...mapActions(['cambiarEstadoTarjeta']),
+    ...mapActions(['ganarJuego']),
     async flipCard(position) {
       if (!this.getCardByPosition(position).selected) {
         this.cambiarEstadoTarjeta({pos: position, state: true})
         await this.delay(0.7);
-      this.verifyCards(position)
+        this.verifyCards(position)
       }
     },
     async timerGame() {
       while(this.time < 59) {
         await this.delay(1)
         this.time++
+        if (!this.getGame.stateFinished) {
+          this.endGame()
+        }
       }
-        this.endGame()
     },
     endGame() {
       if (this.time === 59 || this.pairsRemaining === 0) {
+        if (this.pairsRemaining === 0) {
+          this.time = 59
+          this.ganarJuego(true)
+        }
         this.$router.push({name: 'EndGame'})
       }
     },
@@ -107,6 +113,11 @@ export default {
       this.lastPairs.posCard1 = -1
       this.lastPairs.posCard2 = -1
     },
+    verifyExistingCard() {
+      if (this.getGame.listImg.length === 0) {
+        this.$router.push({name: 'Levels'})
+      }
+    },
     delay(n){
       return new Promise(function(resolve){
         setTimeout(resolve,n*1000);
@@ -118,7 +129,11 @@ export default {
     ...mapGetters(['getCardByPosition']),
   },
   created() {
+    this.verifyExistingCard()
     this.timerGame()
+  },
+  beforeDestroy() {
+    this.time = 59
   }
 }
 </script>
