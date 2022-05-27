@@ -28,12 +28,7 @@
           </div>
         </div>
         <div class="row mx-auto mt-3">
-          <div v-for="(card, i) in getGame.listImg" :key="i" class="col-3 px-1 flip-container">
-            <div class="card bg-3 fc-2 ratio ratio-1x1 my-1" :class="{'flip-card': card.selected}" @click="flipCard(i)">
-              <img class="img-fluid front" :src="card.link" alt="">
-              <div class="back w-100 h-100 d-flex align-items-center justify-content-center"><span>?</span></div>
-            </div>
-          </div>
+          <CardImg class="col-3 px-1" v-for="(item,i) in getGame.listImg" :key="i" :card="item" @click="flipCard(i)"/>
         </div>
       </div>
     </div>
@@ -42,13 +37,14 @@
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import CardImg from '@/components/CardImg.vue'
 import { mapGetters, mapActions} from "vuex"
+import * as Func from '@/common/js/functions.js'
 
 export default {
   name: 'RoomGame',
   components: {
-    HelloWorld
+    CardImg
   },
   data() {
     return {
@@ -65,16 +61,9 @@ export default {
   methods: {
     ...mapActions(['cambiarEstadoTarjeta']),
     ...mapActions(['ganarJuego']),
-    async flipCard(position) {
-      if (!this.getCardByPosition(position).selected) {
-        this.cambiarEstadoTarjeta({pos: position, state: true})
-        await this.delay(0.7);
-        this.verifyCards(position)
-      }
-    },
     async timerGame() {
       while(this.time < 59) {
-        await this.delay(1)
+        await Func.delay(1)
         this.time++
         if (!this.getGame.stateFinished) {
           this.endGame()
@@ -84,10 +73,16 @@ export default {
     endGame() {
       if (this.time === 59 || this.pairsRemaining === 0) {
         if (this.pairsRemaining === 0) {
-          this.time = 59
           this.ganarJuego(true)
         }
         this.$router.push({name: 'EndGame'})
+      }
+    },
+    async flipCard(position) {
+      if (!this.getCardByPosition(position).selected) {
+        this.cambiarEstadoTarjeta({pos: position, state: true})
+        await Func.delay(0.7);
+        this.verifyCards(position)
       }
     },
     verifyCards(pos) {
@@ -117,11 +112,6 @@ export default {
       if (this.getGame.listImg.length === 0) {
         this.$router.push({name: 'Levels'})
       }
-    },
-    delay(n){
-      return new Promise(function(resolve){
-        setTimeout(resolve,n*1000);
-      })
     }
   },
   computed: {
@@ -141,43 +131,5 @@ export default {
 .timer{
   transform: scale(1.65) !important;
   transform-origin: 50% 50% !important;
-}
-.btn-1 {
-  color: #ffffff !important;
-  text-decoration: none;
-  display: block;
-  padding: 0.5rem 1rem;
-  border-radius: 1rem;
-  margin: 1.5rem auto;
-  cursor: pointer;
-}
-.btn-1:hover {
-  transform: scale(1.1) !important;
-  transform-origin: 50% 50% !important;
-}
-.tema-img{
-  border: .4rem #FFF solid;
-  overflow: hidden;
-  border-radius: 2rem;
-}
-.tema-img:hover{
-  transform: scale(1.1) !important;
-  transform-origin: 50% 50% !important;
-}
-.card.flip-card {
-  transform: rotateY(-180deg);
-}
-.card {
-  transition: all 700ms ease-in-out;
-  transform-style: preserve-3d;
-  cursor: pointer;
-}
-.front, .back {
-  position: absolute;
-  backface-visibility: hidden;
-  font-size: 2rem;
-}
-.front {
-  transform: rotateY(-180deg);
 }
 </style>

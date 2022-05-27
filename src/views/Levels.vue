@@ -6,36 +6,7 @@
           <div class="col">
             <span class="fs-1">Temas</span>
             <div class="row mt-4">
-              <div class="col-4">
-                <div class="tema">
-                  <div class="tema-img">
-                    <img src="@/assets/img/PokeApi.jpg" alt="" class="img-fluid">
-                  </div>
-                  <div class="tema-text my-2">
-                    <span class="fs-6">Pokémon</span>
-                  </div>
-                </div>
-              </div>
-              <div class="col-4">
-                <div class="tema">
-                  <div class="tema-img">
-                    <img src="@/assets/img/MarvelApi.jpg" alt="" class="img-fluid">
-                  </div>
-                  <div class="tema-text my-2">
-                    <span class="fs-6">Avengers</span>
-                  </div>
-                </div>
-              </div>
-              <div class="col-4">
-                <div class="tema">
-                  <div class="tema-img">
-                    <img src="@/assets/img/MoviesApi.jpg" alt="" class="img-fluid">
-                  </div>
-                  <div class="tema-text my-2">
-                    <span class="fs-6">Rick and Morty</span>
-                  </div>
-                </div>
-              </div>
+              <CardTheme v-for="(item,i) in listThemes" :key="i" @click="selectTheme(item)" :data="item" class="col-4"/>
             </div>
           </div>
         </div>
@@ -43,11 +14,14 @@
           <div class="col">
             <span class="fs-1">Nivel</span>
             <div class="my-3">
-              <a href="#" class="btn-1 bg-2" @click="selectPokeApi(1)"><span>Fácil</span></a>
-              <a href="#" class="btn-1 bg-2" @click="selectPokeApi(2)"><span>Medio</span></a>
-              <a href="#" class="btn-1 bg-2" @click="selectPokeApi(3)"><span>Difícil</span></a>
+              <Button-01 v-for="(item, i) in listLevels" :key="i" class="bg-2" @click="selectLevel(item)" :data="item"/>
             </div>
-              <router-link :to=" {name: 'RoomGame'}" type="button" class="btn-1 bg-3" ><span class="fs-2">Iniciar partida</span></router-link>
+            <div v-if="!loadedData" class="btn bg-3 py-2">
+              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            </div>
+            <router-link v-else :to=" {name: 'RoomGame'}" class="btn bg-3">
+              <span class="fs-2">Iniciar partida</span>
+            </router-link>
           </div>
         </div>
       </div>
@@ -56,65 +30,77 @@
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import CardTheme from '@/components/CardTheme.vue'
+import Button01 from '@/components/Button01.vue'
 import { mapActions} from "vuex"
-
-import * as LibJs from '@/common/js/functions.js'
 
 export default {
   name: 'Levels',
   components: {
-    HelloWorld
+    CardTheme,
+    Button01
   },
   data() {
     return {
-      game: {
-        api: '',
-        level: '',
-        listImg: []
-      }
+      listThemes: [
+        {id: 1, urlImg: 'assets/img/PokeApi.jpg', title: 'Pokémon', selected: true},
+        {id: 2, urlImg: 'assets/img/MarvelApi.jpg', title: 'Avengers', selected: false},
+        {id: 3, urlImg: 'assets/img/MoviesApi.jpg', title: 'Rick and Morty', selected: false},
+      ],
+      listLevels: [
+        {id: 1, text: 'Fácil', selected: true},
+        {id: 2, text: 'Medio', selected: false},
+        {id: 3, text: 'Difícil', selected: false},
+      ],
+      game: {theme: '', level: '', listImg: []},
+      theme: '',
+      difficulty: '',
+      loadedData: true
     }
   },
   methods: {
     ...mapActions(['nuevoJuego']),
-    selectPokeApi(level) {
-      this.game.level = level
-      this.nuevoJuego(this.game)
+    ...mapActions(['reiniciarData']),
+    selectTheme(theme) {
+      this.resetThemes()
+      this.game.theme = theme.id
+      theme.selected = true
     },
-    createGame(){
-
+    selectLevel(level) {
+      this.game.level = level.id
+      this.resetLevels()
+      level.selected = true
+      this.createGame()
+    },
+    async createGame() {
+      this.loadedData = false
+      await this.nuevoJuego(this.game)
+      this.loadedData = true
+    },
+    resetThemes() {
+      for (let i = 0; i < this.listThemes.length; i++) {
+        this.listThemes[i].selected = false
+      }
+    },
+    resetLevels() {
+      for (let i = 0; i < this.listLevels.length; i++) {
+        this.listLevels[i].selected = false
+      }
     }
+  },
+  created(){
+    this.reiniciarData()
   }
 }
 </script>
 <style scoped>
-.vh-30{
-  height: 30vh !important;
-}
-.vh-40{
-  min-height: 40vh !important;
-}
-.btn-1 {
+.btn {
   color: #ffffff !important;
-  text-decoration: none;
+  text-decoration: none !important;
   display: block;
   padding: 0.5rem 1rem;
   border-radius: 1rem;
   margin: 1.5rem auto;
   cursor: pointer;
-}
-.btn-1:hover {
-  transform: scale(1.1) !important;
-  transform-origin: 50% 50% !important;
-}
-.tema-img{
-  border: .4rem #FFF solid;
-  overflow: hidden;
-  border-radius: 2rem;
-}
-.tema-img:hover{
-  transform: scale(1.1) !important;
-  transform-origin: 50% 50% !important;
 }
 </style>

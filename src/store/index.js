@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import * as LibJs from '@/common/js/functions.js'
+import * as LibJs from '@/common/js/apiPokemonFunctions.js'
 
 Vue.use(Vuex)
 

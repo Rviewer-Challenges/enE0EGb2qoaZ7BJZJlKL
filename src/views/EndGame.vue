@@ -33,7 +33,7 @@
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+// import HelloWorld from '@/components/HelloWorld.vue'
 import { mapGetters, mapActions} from "vuex"
 
 export default {
@@ -64,12 +64,6 @@ export default {
 }
 </script>
 <style scoped>
-.vh-30{
-  height: 30vh !important;
-}
-.vh-40{
-  min-height: 40vh !important;
-}
 .btn-1 {
   color: #ffffff !important;
   text-decoration: none;
