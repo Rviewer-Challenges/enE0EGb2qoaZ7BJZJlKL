@@ -6,8 +6,7 @@
 
 <style>
 body {
-  background: #de9151;
-  background: linear-gradient(to left top, #f34213, #ee5d1e, #e8712d, #e3823e, #de9151);
+  background: #58409C !important;
   min-height: 100vh;
 }
 #app {

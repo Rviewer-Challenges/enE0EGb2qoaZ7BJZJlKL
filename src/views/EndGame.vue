@@ -2,29 +2,9 @@
   <div class="container">
     <div class="row d-flex d-column mx-auto">
       <div class="col col-sm-9 col-md-6 col-lg-4 mx-auto">
-        <div class="row mx-auto">
-          <div class="col vh-30"></div>
-        </div>
-        <div class="row mx-auto">
-          <div class="col text-white">
-            <div class="bg-3 py-4 rounded-3 ">
-              <div v-if="!statusGame" class="game-lost d-flex flex-column">
-                <span class="fs-3">Fin del Juego</span>
-                <img src="@/assets/img/emojiCry.svg" class="mx-auto my-3" alt="lost" width="100" height="100">
-                <span>Esto es un juego, no un trámite de gobierno.</span>
-              </div>
-              <div v-else class="game-win d-flex flex-column">
-                <span class="fs-3">Excelente</span>
-                <img src="@/assets/img/party.svg" class="mx-auto my-3" alt="lost" width="100" height="100">
-                <span>Velocidad, soy veloz</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row mx-auto">
-          <div class="col">
-
-          </div>
+        <div class="d-flex flex-row align-items-center text-white vh-100">
+          <CardEndGame v-if="!statusGame" :data="lostGame"/>
+          <CardEndGame v-else :data="winGame"/>
         </div>
       </div>
     </div>
@@ -32,15 +12,19 @@
 </template>
 
 <script>
-// @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
 import { mapGetters, mapActions} from "vuex"
+import CardEndGame from '@/components/CardEndGame.vue'
 
 export default {
   name: 'EndGame',
+  components: {
+    CardEndGame
+  },
   data() {
     return {
-      statusGame: false
+      statusGame: false,
+      lostGame: {title: 'Fin del Juego', icon: 'assets/img/emojiCry.svg', phrase: 'Esto es un juego contra reloj, no un trámite de gobierno.'},
+      winGame: {title: 'Excelente', icon: 'assets/img/party.svg', phrase: 'Velocidad, soy veloz'},
     }
   },
   methods: {
@@ -64,17 +48,13 @@ export default {
 }
 </script>
 <style scoped>
-.btn-1 {
-  color: #ffffff !important;
-  text-decoration: none;
-  display: block;
-  padding: 0.5rem 1rem;
-  border-radius: 1rem;
-  margin: 1.5rem auto;
-  cursor: pointer;
+.game-win {
+  min-width: 100%;
 }
-.btn-1:hover {
-  transform: scale(1.1) !important;
-  transform-origin: 50% 50% !important;
+
+.section {
+  overflow: hidden;
+  border-radius: 1rem;
+  box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.1);
 }
 </style>

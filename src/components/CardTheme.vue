@@ -1,7 +1,7 @@
 <template>
   <div class="col-4">
     <div class="tema">
-      <div class="tema-img" :class="{'selected': data.selected}">
+      <div class="btn btn-1 bg-6 p-2" :class="{'selected': data.selected}">
         <img :src="require(`@/${data.urlImg}`)" class="img-fluid" @click="$emit('click')">
       </div>
       <div class="tema-text my-2">
@@ -19,27 +19,4 @@ export default {
 }
 </script>
 <style scoped>
-.tema-img{
-  border: .4rem #FFF solid;
-  overflow: hidden;
-  border-radius: 2rem;
-  cursor: pointer;
-  position: relative;
-}
-.tema-img:hover{
-  transform: scale(1.1) !important;
-  transform-origin: 50% 50% !important;
-}
-.selected {
-  border: .4rem #DE9151 solid;
-}
-.selected::after {
-  content: "";
-  width: 100%;
-  height: 100%;
-  background: #DE915180;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
 </style>

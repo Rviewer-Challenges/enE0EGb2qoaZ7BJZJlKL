@@ -7,36 +7,30 @@
 
 /* Background colors */
 .bg-1 {
-  background: #DE9151 !important;
+  background: #58409C !important;
 }
 .bg-2 {
-  background: #F34213 !important;
+  background: #6F58CB !important;
 }
 .bg-3 {
-  background: #2E2E3A !important;
+  background: #4B3A92 !important;
 }
 .bg-4 {
-  background: #BC5D2E !important;
+  background: #1B182D !important;
 }
 .bg-5 {
-  background: #BBB8B2 !important;
+  background: #FBBC44 !important;
+}
+.bg-6 {
+  background: #FEFEFE !important;
 }
 
 /* Text colors */
 .fc-1 {
-  color: #DE9151 !important;
+  color: #1B182D !important;
 }
 .fc-2 {
-  color: #F34213 !important;
-}
-.fc-3 {
-  color: #2E2E3A !important;
-}
-.fc-4 {
-  color: #BC5D2E !important;
-}
-.fc-5 {
-  color: #BBB8B2 !important;
+  color: #FEFEFE !important;
 }
 
 /* Font size */
@@ -46,4 +40,24 @@
 
 .text-menu {
   font-weight: bold;
+}
+
+/* Button 01 */
+.btn-1{
+  background: #FEFEFE !important;
+  color: #1B182D !important;
+  text-decoration: none !important;
+  border-radius: 1rem;
+  border-bottom: 5px solid #A3A3A3 !important;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+}
+.btn-1.selected {
+  background: #FEDF61 !important;
+  border-radius: 1rem;
+  border-bottom: 5px solid #F79E1C !important;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
 }

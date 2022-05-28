@@ -73,6 +73,7 @@ export default {
     endGame() {
       if (this.time === 59 || this.pairsRemaining === 0) {
         if (this.pairsRemaining === 0) {
+          this.time = 59
           this.ganarJuego(true)
         }
         this.$router.push({name: 'EndGame'})
@@ -120,7 +121,7 @@ export default {
   },
   created() {
     this.verifyExistingCard()
-    this.timerGame()
+    // this.timerGame()
   },
   beforeDestroy() {
     this.time = 59

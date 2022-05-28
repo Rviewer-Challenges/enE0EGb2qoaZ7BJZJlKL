@@ -1,14 +1,14 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import * as LibJs from '@/common/js/apiPokemonFunctions.js'
+import * as LibJs from '@/common/js/apiFunctions.js'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
     game: {
-      api: '',
+      theme: '',
       level: '',
       stateFinished: false,
       listImg: []
@@ -26,7 +26,7 @@ export default new Vuex.Store({
     },
     resetGame(state) {
       state.game = {
-        api: '',
+        theme: '',
         level: '',
         stateFinished: false,
         listImg: []
@@ -35,8 +35,7 @@ export default new Vuex.Store({
   },
   actions: {
     async nuevoJuego({commit}, game) {
-      game.listImg = await LibJs.getListPokemon(game.level)
-      console.log(game);
+      game.listImg = await LibJs.getListImages(game.theme, game.level)
       commit('newGame', game)
     },
     cambiarEstadoTarjeta({commit}, obj) {
