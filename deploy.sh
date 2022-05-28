@@ -14,6 +14,6 @@ cd dist
 git init
 git add -A
 git commit -m 'Despliegue'
-git push -f git@github.com:HenrySantamariaC/MemoryGame.git gh-pages
+git push -f git@github.com:HenrySantamariaC/MemoryGame.git devel:gh-pages
 
 cd -
