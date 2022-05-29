@@ -1,36 +1,32 @@
 <template>
-  <div class="container text-white">
-    <div class="row d-flex d-column">
-      <div class="col col-sm-9 col-md-6 col-lg-4 mx-auto my-5">
-        <div class="row mx-auto">
-          <div class="col mb-3">
-            <h1>Partida</h1>
-            <div class="row fs-7">
-              <div class="col-4">
-                <div class="d-flex flex-column mt-4">
-                  <span>Mov</span>
-                  <span>{{movement}}</span>
-                </div>
-              </div>
-              <div class="col-4">
-                <div class="d-flex flex-column mt-4 timer">
-                  <span>Tiempo</span>
-                  <span>00:{{time}}</span>
-                </div>
-              </div>
-              <div class="col-4">
-                <div class="d-flex flex-column mt-4">
-                  <span>Rest</span>
-                  <span>{{pairsRemaining}}</span>
-                </div>
-              </div>
+  <div>
+    <div class="row mx-auto">
+      <div class="col my-3">
+        <h1>Partida</h1>
+        <div class="row fs-7">
+          <div class="col-4">
+            <div class="d-flex flex-column mt-4">
+              <span>Mov</span>
+              <span>{{movements}}</span>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="d-flex flex-column mt-4 timer">
+              <span>Tiempo</span>
+              <span>00:{{time.toString().padStart(2, "0")}}</span>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="d-flex flex-column mt-4">
+              <span>Rest</span>
+              <span>{{pairsRemaining}}</span>
             </div>
           </div>
         </div>
-        <div class="row mx-auto mt-3">
-          <CardImg class="col-3 px-1" v-for="(item,i) in getGame.listImg" :key="i" :card="item" @click="flipCard(i)"/>
-        </div>
       </div>
+    </div>
+    <div class="row mx-auto mt-3">
+      <CardImg class="col-3 px-1" :class="{'w-20': (getGame.level === 3)}" v-for="(item,i) in getGame.listImg" :key="i" :card="item" @click="flipCard(i)"/>
     </div>
   </div>
 </template>
@@ -53,7 +49,7 @@ export default {
         posCard1: -1,
         posCard2: -1
       },
-      movement: 0,
+      movements: 0,
       pairsRemaining: 8,
       time: 0,
     }
@@ -71,11 +67,15 @@ export default {
       }
     },
     endGame() {
+      let final = {movements:'',time:'',statusGame:false}
       if (this.time === 59 || this.pairsRemaining === 0) {
+        final.movements = this.movements
+        final.time = this.time
         if (this.pairsRemaining === 0) {
           this.time = 59
-          this.ganarJuego(true)
+          final.statusGame = true
         }
+        this.ganarJuego(final)
         this.$router.push({name: 'EndGame'})
       }
     },
@@ -98,7 +98,7 @@ export default {
         } else {
           this.pairsRemaining--
         }
-        this.movement++
+        this.movements++
         this.resetLastPair()
       } else {
         this.lastPairs.posCard1 = pos
@@ -121,7 +121,7 @@ export default {
   },
   created() {
     this.verifyExistingCard()
-    // this.timerGame()
+    this.timerGame()
   },
   beforeDestroy() {
     this.time = 59
@@ -132,5 +132,8 @@ export default {
 .timer{
   transform: scale(1.65) !important;
   transform-origin: 50% 50% !important;
+}
+.w-20 {
+  width: 20% !important;
 }
 </style>

@@ -61,3 +61,31 @@
   overflow: hidden;
   position: relative;
 }
+
+.btn-2{
+  background: #FC6552 !important;
+  border-bottom: 5px solid #D7402D !important;
+  border-radius: 1rem !important;
+  color: #FEFEFE !important;
+  text-decoration: none !important;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+}
+.btn-2.active {
+  background: #6CCA80 !important;
+  border: none !important;
+  border-bottom: 5px solid #2E994A !important;
+  border-radius: 1rem !important;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+}
+.btn-2:hover {
+  border-bottom: none !important;
+  border-top: 5px solid #D7402D !important;
+}
+.btn-2.active:hover {
+  border-bottom: none !important;
+  border-top: 5px solid #2E994A !important;
+}

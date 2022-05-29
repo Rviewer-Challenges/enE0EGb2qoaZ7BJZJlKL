@@ -11,6 +11,8 @@ export default new Vuex.Store({
       theme: '',
       level: '',
       stateFinished: false,
+      movements: 0,
+      time: 0,
       listImg: []
     }
   },
@@ -22,7 +24,9 @@ export default new Vuex.Store({
       state.game.listImg[val.pos].selected = val.state
     },
     winGame(state, val) {
-      state.game.stateFinished = val
+      state.game.stateFinished = val.statusGame
+      state.game.movements = val.movements
+      state.game.time = val.time
     },
     resetGame(state) {
       state.game = {

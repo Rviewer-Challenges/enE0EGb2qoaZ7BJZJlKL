@@ -1,13 +1,7 @@
 <template>
-  <div class="container">
-    <div class="row d-flex d-column mx-auto">
-      <div class="col col-sm-9 col-md-6 col-lg-4 mx-auto">
-        <div class="d-flex flex-row align-items-center text-white vh-100">
-          <CardEndGame v-if="!statusGame" :data="lostGame"/>
-          <CardEndGame v-else :data="winGame"/>
-        </div>
-      </div>
-    </div>
+  <div class="d-flex flex-row align-items-center text-white vh-100">
+    <CardEndGame v-if="!statusGame" :data="lostGame" :game="getGame"/>
+    <CardEndGame v-else :data="winGame" :game="getGame"/>
   </div>
 </template>
 
@@ -43,6 +37,8 @@ export default {
   created() {
     this.verifyExistingCard()
     this.statusGame = this.getStateGame
+  },
+  beforeDestroy() {
     this.reiniciarData()
   }
 }

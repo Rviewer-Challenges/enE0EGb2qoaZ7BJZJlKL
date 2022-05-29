@@ -5,7 +5,7 @@
         <img :src="require(`@/${data.urlImg}`)" class="img-fluid" @click="$emit('click')">
       </div>
       <div class="tema-text my-2">
-        <span class="fs-6">{{data.title}}</span>
+        <span class="fs-7">{{data.title}}</span>
       </div>
     </div>
   </div>
