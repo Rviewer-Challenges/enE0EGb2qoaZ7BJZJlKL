@@ -1,0 +1,88 @@
+@font-face {
+    font-family: 'CynGamer';
+    src: url('../../assets/fonts/CYNGamer.ttf') format('truetype');
+    font-style: normal;
+    font-weight: normal;
+  }
+
+/* Background colors */
+.bg-1 {
+  background: #58409C !important;
+}
+.bg-2 {
+  background: #6F58CB !important;
+}
+.bg-3 {
+  background: #4B3A92 !important;
+}
+.bg-4 {
+  background: #1B182D !important;
+}
+.bg-5 {
+  background: #FBBC44 !important;
+}
+.bg-6 {
+  background: #FEFEFE !important;
+}
+
+/* Text colors */
+.fc-1 {
+  color: #1B182D !important;
+}
+.fc-2 {
+  color: #FEFEFE !important;
+}
+
+/* Font size */
+.fs-7 {
+  font-size: 0.8rem !important;
+}
+
+.text-menu {
+  font-weight: bold;
+}
+
+/* Button 01 */
+.btn-1{
+  background: #FEFEFE !important;
+  color: #1B182D !important;
+  text-decoration: none !important;
+  border-radius: 1rem;
+  border-bottom: 5px solid #A3A3A3 !important;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+}
+.btn-1.selected {
+  background: #FEDF61 !important;
+  border-radius: 1rem;
+  border-bottom: 5px solid #F79E1C !important;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+}
+
+.btn-2 {
+  background: #FC6552 !important;
+  border-bottom: 5px solid #D7402D !important;
+  border-radius: 1rem !important;
+  color: #FEFEFE !important;
+  text-decoration: none !important;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+}
+.btn-3 {
+  background: #6CCA80 !important;
+  border: none !important;
+  border-bottom: 5px solid #2E994A !important;
+  border-radius: 1rem !important;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+}
+.section {
+  overflow: hidden;
+  border-radius: 1rem;
+  box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.1);
+}
