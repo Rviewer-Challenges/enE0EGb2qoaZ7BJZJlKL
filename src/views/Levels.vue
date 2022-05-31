@@ -22,17 +22,15 @@
           </div>
           <div class="body bg-2">
             <div class="row p-3">
-              <Button-01 v-for="(item, i) in listLevels" :key="i" class="col-4" @click="selectLevel(item)" :data="item"/>
+              <Button01 v-for="(item, i) in listLevels" :key="i" class="col-4" @click="selectLevel(item)" :data="item"/>
             </div>
           </div>
         </div>
-        <div v-if="!loadedData" class="btn btn-2 w-100 mb-3" @click="createGame()">
-          <span class="fs-6 mx-auto">Crear partida</span>
-        </div>
-        <div v-else class="btn btn-2 active w-100 mb-3">
+        <Button01 v-if="!loadedData" class="w-100 mb-3" @click="createGame()" :data="{text: 'Crear Partida', selected: false}"/>
+        <div v-else class="btn btn-3 w-100 mb-3">
           <span class="fs-6 mx-auto">Listo</span>
         </div>
-        <div v-if="!loadedData" class="btn btn-1 py-2">
+        <div v-if="!startGame" class="btn btn-1 py-2">
           <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
         </div>
         <router-link v-else :to=" {name: 'RoomGame'}" class="btn btn-1 py-2">
@@ -65,40 +63,39 @@ export default {
         {id: 2, text: 'Medio', selected: false},
         {id: 3, text: 'Difícil', selected: false},
       ],
-      game: {theme: '', level: '', stateFinished: false, listImg: []},
-      loadedData: false
+      game: {theme: 0, level: 0, stateFinished: false, listImg: []},
+      loadedData: false,
+      startGame: true
     }
   },
   methods: {
     ...mapActions(['nuevoJuego']),
     ...mapActions(['reiniciarData']),
     selectTheme(theme) {
-      this.resetThemes()
-      this.loadedData = false
+      this.resetSelectedButton(this.listThemes)
+      this.reiniciarData()
       this.game.theme = theme.id
+      this.loadedData = false
       theme.selected = true
     },
     selectLevel(level) {
+      this.resetSelectedButton(this.listLevels)
+      this.reiniciarData()
       this.game.level = level.id
-      this.resetLevels()
       this.loadedData = false
       level.selected = true
-      // this.createGame()
     },
     async createGame() {
-      this.loadedData = false
-      await this.nuevoJuego(this.game)
-      this.loadedData = true
-    },
-    resetThemes() {
-      for (let i = 0; i < this.listThemes.length; i++) {
-        this.listThemes[i].selected = false
+      if (this.game.theme>0 && this.game.level>0) {
+        this.loadedData = false
+        this.startGame = false
+        await this.nuevoJuego(this.game)
+        this.loadedData = true
+        this.startGame = true
       }
     },
-    resetLevels() {
-      for (let i = 0; i < this.listLevels.length; i++) {
-        this.listLevels[i].selected = false
-      }
+    resetSelectedButton(array) {
+      array.forEach(item => {item.selected = false})
     }
   },
   created(){
@@ -107,9 +104,4 @@ export default {
 }
 </script>
 <style scoped>
-.section {
-  overflow: hidden;
-  border-radius: 1rem;
-  box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.1);
-}
 </style>

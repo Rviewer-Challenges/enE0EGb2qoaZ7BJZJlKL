@@ -7,8 +7,8 @@
       <div class="body bg-2 d-flex flex-column py-3 px-1">
         <img :src="require(`@/${data.icon}`)" class="mx-auto my-3" alt="lost" width="80" height="80">
         <span class="btn btn-1 my-1 mx-auto">Movimientos: {{game.movements}}</span>
-        <span class="btn btn-1 my-1 mx-auto">Tiempo: {{game.time.toString().padStart(2, "0")}}seg</span>
-        <span>{{data.phrase}}</span>
+        <span class="btn btn-1 my-1 mx-auto">Tiempo: {{game.time}}seg</span>
+        <span class="mt-3">{{data.phrase}}</span>
       </div>
       <div class="footer mb-3">
         <router-link :to="{name: 'Levels'}" class="btn btn-1 mx-2">

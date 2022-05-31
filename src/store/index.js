@@ -61,6 +61,9 @@ export default new Vuex.Store({
     },
     getStateGame(state) {
       return state.game.stateFinished
+    },
+    getCountPairsCards(state) {
+      return state.game.listImg.length / 2
     }
   },
   modules: {

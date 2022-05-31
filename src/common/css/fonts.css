@@ -62,7 +62,7 @@
   position: relative;
 }
 
-.btn-2{
+.btn-2 {
   background: #FC6552 !important;
   border-bottom: 5px solid #D7402D !important;
   border-radius: 1rem !important;
@@ -72,7 +72,7 @@
   overflow: hidden;
   position: relative;
 }
-.btn-2.active {
+.btn-3 {
   background: #6CCA80 !important;
   border: none !important;
   border-bottom: 5px solid #2E994A !important;
@@ -81,11 +81,8 @@
   overflow: hidden;
   position: relative;
 }
-.btn-2:hover {
-  border-bottom: none !important;
-  border-top: 5px solid #D7402D !important;
-}
-.btn-2.active:hover {
-  border-bottom: none !important;
-  border-top: 5px solid #2E994A !important;
+.section {
+  overflow: hidden;
+  border-radius: 1rem;
+  box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.1);
 }

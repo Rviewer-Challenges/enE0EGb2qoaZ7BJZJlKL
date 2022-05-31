@@ -47,10 +47,4 @@ export default {
 .game-win {
   min-width: 100%;
 }
-
-.section {
-  overflow: hidden;
-  border-radius: 1rem;
-  box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.1);
-}
 </style>

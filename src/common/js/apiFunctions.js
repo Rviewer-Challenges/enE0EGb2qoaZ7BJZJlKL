@@ -1,14 +1,13 @@
+async function getGameOfThrones(id) {
+    let response = await fetch(`https://thronesapi.com/api/v2/Characters/` + id)
+    let obj = await response.json()
+    return obj.imageUrl
+}
 
 async function getPokemon(id) {
     let response = await fetch(`https://pokeapi.co/api/v2/pokemon/` + id)
     let pokemon = await response.json()
     return pokemon.sprites.front_default
-}
-
-async function getGameOfThrones(id) {
-    let response = await fetch(`https://thronesapi.com/api/v2/Characters/` + id)
-    let obj = await response.json()
-    return obj.imageUrl
 }
 
 async function getRickMorty(id) {
@@ -48,14 +47,16 @@ function desordenarList(array) {
 
 async function generateList(theme, length) {
     let list = []
-    for (let i = 0; i < length; i++) {
-        let card = {id: -1,selected: false, link: ''}
-        card.id = i
-        card.link = await randomImg(theme)
-        list.push( JSON.parse(JSON.stringify(card)) )
-        list.push( JSON.parse(JSON.stringify(card)) )
+    if (theme != 0) {
+        for (let i = 0; i < length; i++) {
+            let card = {id: -1,selected: false, link: ''}
+            card.id = i
+            card.link = await randomImg(theme)
+            list.push( JSON.parse(JSON.stringify(card)) )
+            list.push( JSON.parse(JSON.stringify(card)) )
+        }
+        list = desordenarList(list)
     }
-    list = desordenarList(list)
     return list
 }
 

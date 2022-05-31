@@ -1,13 +1,26 @@
-<svg width="16px" height="18px" viewBox="0 0 16 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-
-<title>arrow_repeat [#236]</title>
-<desc>Created with Sketch.</desc>
-<defs></defs>
-<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-<g id="Dribbble-Light-Preview" transform="translate(-302.000000, -7080.000000)" fill="#000000">
-<g id="icons" transform="translate(56.000000, 160.000000)">
-<path d="M260,6930 C260,6933 257.308,6936 254,6936 C250.692,6936 248,6933.308 248,6930 C248,6926.692 250.692,6924 254,6924 L254,6926 L259,6923 L254,6920 L254,6922 C249.582,6922 246,6925.582 246,6930 C246,6934.418 249.582,6938 254,6938 C258.418,6938 262,6935 262,6930 L260,6930 Z" id="arrow_repeat-[#236]"></path>
-</g>
-</g>
-</g>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW 2020 (64-Bit) -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="4.4334mm" height="5.0392mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 443.34 503.92"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .str0 {stroke:#1B182D;stroke-width:20;stroke-miterlimit:22.9256}
+    .fil0 {fill:#1B182D}
+   ]]>
+  </style>
+ </defs>
+ <g id="Capa_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <g id="Page-1">
+   <g id="Dribbble-Light-Preview">
+    <g id="icons">
+     <path id="arrow_repeat-_x005b__x0023_236_x005d_" class="fil0 str0" d="M380.42 282.25c0,79.37 -71.23,158.75 -158.75,158.75 -87.52,0 -158.75,-71.23 -158.75,-158.75 0,-87.53 71.23,-158.75 158.75,-158.75l0 52.91 132.29 -79.37 -132.29 -79.38 0 52.92c-116.89,0 -211.67,94.78 -211.67,211.67 0,116.89 94.78,211.67 211.67,211.67 116.89,0 211.67,-79.38 211.67,-211.67l-52.92 0z"/>
+    </g>
+   </g>
+  </g>
+ </g>
 </svg>

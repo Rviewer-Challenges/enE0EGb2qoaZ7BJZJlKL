@@ -2,24 +2,27 @@
   <div>
     <div class="row mx-auto">
       <div class="col my-3">
+        <router-link :to=" {name: 'Levels'}" class="btn btn-1 py-2 mb-3">
+          <img src="@/assets/img/back.svg" alt="Iniciar juego" width="20" height="20">
+        </router-link>
         <h1>Partida</h1>
         <div class="row fs-7">
           <div class="col-4">
             <div class="d-flex flex-column mt-4">
               <span>Mov</span>
-              <span>{{movements}}</span>
+              <span>{{dataGame.movements}}</span>
             </div>
           </div>
           <div class="col-4">
             <div class="d-flex flex-column mt-4 timer">
               <span>Tiempo</span>
-              <span>00:{{time.toString().padStart(2, "0")}}</span>
+              <span>00:{{dataGame.time.toString().padStart(2, "0")}}</span>
             </div>
           </div>
           <div class="col-4">
             <div class="d-flex flex-column mt-4">
               <span>Rest</span>
-              <span>{{pairsRemaining}}</span>
+              <span>{{dataGame.pairsRemaining}}</span>
             </div>
           </div>
         </div>
@@ -49,35 +52,31 @@ export default {
         posCard1: -1,
         posCard2: -1
       },
-      movements: 0,
-      pairsRemaining: 8,
-      time: 0,
+      dataGame: {
+        movements: 0,
+        pairsRemaining: 0,
+        time: 0,
+        statusGame: false
+      }
     }
   },
   methods: {
     ...mapActions(['cambiarEstadoTarjeta']),
     ...mapActions(['ganarJuego']),
     async timerGame() {
-      while(this.time < 59) {
+      while(!this.endGame() && this.dataGame.time < 60) {
         await Func.delay(1)
-        this.time++
-        if (!this.getGame.stateFinished) {
-          this.endGame()
-        }
+        this.dataGame.time++
       }
+      this.ganarJuego(this.dataGame)
+      this.$router.push({name: 'EndGame'})
     },
     endGame() {
-      let final = {movements:'',time:'',statusGame:false}
-      if (this.time === 59 || this.pairsRemaining === 0) {
-        final.movements = this.movements
-        final.time = this.time
-        if (this.pairsRemaining === 0) {
-          this.time = 59
-          final.statusGame = true
-        }
-        this.ganarJuego(final)
-        this.$router.push({name: 'EndGame'})
+      if (this.dataGame.pairsRemaining === 0) {
+        this.dataGame.statusGame = true
+        return true
       }
+      return false
     },
     async flipCard(position) {
       if (!this.getCardByPosition(position).selected) {
@@ -96,9 +95,9 @@ export default {
           this.cambiarEstadoTarjeta({pos: this.lastPairs.posCard1, state: false})
           this.cambiarEstadoTarjeta({pos: this.lastPairs.posCard2, state: false})
         } else {
-          this.pairsRemaining--
+          this.dataGame.pairsRemaining--
         }
-        this.movements++
+        this.dataGame.movements++
         this.resetLastPair()
       } else {
         this.lastPairs.posCard1 = pos
@@ -118,9 +117,11 @@ export default {
   computed: {
     ...mapGetters(['getGame']),
     ...mapGetters(['getCardByPosition']),
+    ...mapGetters(['getCountPairsCards']),
   },
   created() {
     this.verifyExistingCard()
+    this.dataGame.pairsRemaining = this.getCountPairsCards
     this.timerGame()
   },
   beforeDestroy() {
