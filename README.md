@@ -36,4 +36,4 @@ Para el diseño usé Bootstrap, facilitando el diseño responsive, ya que la ide
 
 Para finalizar adjunto capturas sobre el resultado final del juego.
 
-<img src="/resources_no_code/inicio.jpeg" width="200"><img src="/resources_no_code/principal.jpeg" width="200"><img src="/resources_no_code/tablero.jpeg" width="200">
+<img src="/resources_no_code/inicio.jpeg" width="200"> <img src="/resources_no_code/principal.jpeg" width="200"> <img src="/resources_no_code/tablero.jpeg" width="200">
