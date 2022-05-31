@@ -35,3 +35,7 @@ Vue Js ofrece plugins como Vue Router y Vuex que nos facilitan el desarrollo las
 Para el diseño usé Bootstrap, facilitando el diseño responsive, ya que la idea era presentar un diseño completamente orientado a moviles. Aun asi, en escritorio no deja de verse bien.
 
 Para finalizar adjunto capturas sobre el resultado final del juego.
+
+<img src="/resources_no_code/inicio.jpeg" width="200">
+<img src="/resources_no_code/principal.jpeg" width="200">
+<img src="/resources_no_code/tablero.jpeg" width="200">
